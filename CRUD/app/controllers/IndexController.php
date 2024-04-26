@@ -26,55 +26,51 @@ class IndexController
     public function create()
     {
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            $nomeErro = null;
-            $enderecoErro = null;
-            $telefoneErro = null;
-            $emailErro = null;
-            $sexoErro = null;
+            $tituloErro = null;
+            $dataErro = null;
+            $descricaoErro = null;
+            $conteudoErro = null;
+            $tipoErro = null;
 
             if (!empty($_POST)) {
                 $validacao = True;
-                $novoUsuario = False;
-                if (!empty($_POST['nome'])) {
-                    $nome = $_POST['nome'];
+                $novoTitulo = False;
+                if (!empty($_POST['titulo'])) {
+                    $titulo = $_POST['titulo'];
                 } else {
-                    $nomeErro = 'Por favor digite o seu nome!';
+                    $tituloErro = 'Por favor digite o Titulo!';
                     $validacao = False;
                 }
 
 
-                if (!empty($_POST['endereco'])) {
-                    $endereco = $_POST['endereco'];
+                if (!empty($_POST['data'])) {
+                    $data_nota = $_POST['data_nota'];
                 } else {
-                    $enderecoErro = 'Por favor digite o seu endereço!';
+                    $dataErro = 'Por favor digite a data limite!';
                     $validacao = False;
                 }
 
 
-                if (!empty($_POST['telefone'])) {
-                    $telefone = $_POST['telefone'];
+                if (!empty($_POST['descricao'])) {
+                    $descricao = $_POST['descricao'];
                 } else {
-                    $telefoneErro = 'Por favor digite o número do telefone!';
+                    $descricaoErro = 'Por favor digite o número do telefone!';
                     $validacao = False;
                 }
 
 
-                if (!empty($_POST['email'])) {
-                    $email = $_POST['email'];
-                    if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
-                        $emailErro = 'Por favor digite um endereço de email válido!';
-                        $validacao = False;
-                    }
+                if (!empty($_POST['conteudo'])) {
+                    $conteudo = $_POST['conteudo'];
                 } else {
-                    $emailErro = 'Por favor digite um endereço de email!';
+                    $conteudoErro = 'Por favor digite o conteudo!';
                     $validacao = False;
                 }
 
 
-                if (!empty($_POST['sexo'])) {
-                    $sexo = $_POST['sexo'];
+                if (!empty($_POST['tipo'])) {
+                    $tipo = $_POST['tipo'];
                 } else {
-                    $sexoErro = 'Por favor seleccione um campo!';
+                    $tipoErro = 'Por favor seleccione um campo!';
                     $validacao = False;
                 }
             }
@@ -82,7 +78,7 @@ class IndexController
             //Inserindo no Banco:
             if ($validacao) {
                 $usuarios = new UsuarioModel();
-                $dados = $usuarios->setPessoa($nome, $endereco, $telefone, $email, $sexo);
+                $dados = $usuarios->setPlanner($titulo, $data_nota, $descricao, $conteudo, $tipo);
                 header("Location: /");
             }
         }
@@ -101,7 +97,7 @@ class IndexController
             header("Location: /");
         } else {
             $usuarios = new UsuarioModel();
-            $data = $usuarios->readPessoa($id);
+            $data = $usuarios->readPlanner($id);
         }
         require_once '..\app\views\readUsuario.phtml';
     }
@@ -119,67 +115,64 @@ class IndexController
 
         if (!empty($_POST)) {
 
-            $nomeErro = null;
-            $enderecoErro = null;
-            $telefoneErro = null;
-            $emailErro = null;
-            $sexoErro = null;
+            $tituloErro = null;
+            $dataErro = null;
+            $descricaoErro = null;
+            $conteudoErro = null;
+            $tipoErro = null;
 
-            $nome = $_POST['nome'];
-            $endereco = $_POST['endereco'];
-            $telefone = $_POST['telefone'];
-            $email = $_POST['email'];
-            $sexo = $_POST['sexo'];
+            $titulo = $_POST['titulo'];
+            $data_nota = $_POST['data_nota'];
+            $descricao = $_POST['descricao'];
+            $conteudo = $_POST['conteudo'];
+            $tipo= $_POST['tipo'];
 
             //Validação
             $validacao = true;
-            if (empty($nome)) {
-                $nomeErro = 'Por favor digite o nome!';
+            if (empty($titulo)) {
+                $tituloErro = 'Por favor digite o titulo!';
                 $validacao = false;
             }
 
-            if (empty($email)) {
-                $emailErro = 'Por favor digite o email!';
-                $validacao = false;
-            } else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-                $emailErro = 'Por favor digite um email válido!';
+            if (empty($data_nota)) {
+                $dataErro = 'Por favor digite a data limite!';
                 $validacao = false;
             }
 
-            if (empty($endereco)) {
-                $enderecoErro = 'Por favor digite o endereço!';
+            if (empty($descricao)) {
+                $descricaoErro = 'Por favor digite a descricao!';
                 $validacao = false;
             }
 
-            if (empty($telefone)) {
-                $telefoneErro = 'Por favor digite o telefone!';
+            if (empty($conteudo)) {
+                $conteudoErro = 'Por favor digite o conteudo!';
                 $validacao = false;
             }
 
-            if (empty($sexo)) {
-                $sexoErro = 'Por favor preenche o campo!';
+            if (empty($tipo)) {
+                $tipoErro = 'Por favor preenche o campo!';
                 $validacao = false;
             }
 
             // update data
             if ($validacao) {
                 $usuarios = new UsuarioModel();
-                $data = $usuarios->updatePessoa($id, $nome, $endereco, $telefone, $email, $sexo);
+                $data = $usuarios->updatePlanner($id, $titulo, $data_nota, $descricao, $conteudo, $tipo);
                 header("Location: /");
             }
         } else {
 
             $usuarios = new UsuarioModel();
-            $data = $usuarios->getPessoa($id);
+            $data = $usuarios->getPlanner($id);
 
-            $nome = $data['nome'];
-            $endereco = $data['endereco'];
-            $telefone = $data['telefone'];
-            $email = $data['email'];
-            $sexo = $data['sexo'];
+            $titulo = $data['titulo'];
+            $data_nota = $data['data_nota'];
+            $descricao = $data['descricao'];
+            $conteudo = $data['conteudo'];
+            $tipo = $data['tipo'];
         }
 
-        echo $sexo;
+        echo $tipo;
         require_once '..\app\views\updateUsuario.phtml';
     }
 
@@ -195,7 +188,7 @@ class IndexController
             $id = $_POST['id'];
             header("Location: /");
             $usuarios = new UsuarioModel();
-            $data = $usuarios->deletePessoa($id);
+            $data = $usuarios->deletePlanner($id);
         }
         require_once '..\app\views\deleteUsuario.phtml';
     }

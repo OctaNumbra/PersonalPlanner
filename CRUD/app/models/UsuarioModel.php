@@ -10,39 +10,39 @@ class UsuarioModel
     public function getDados()
     {
         $pdo = Banco::conectar();
-        $select = 'SELECT * FROM pessoa ORDER BY id DESC';
+        $select = 'SELECT * FROM tb_planner ORDER BY id DESC';
         $dados = $pdo->query($select)->fetchAll(\PDO::FETCH_ASSOC);
         // return array('dado1','dado2','dado3','dado4');
         return $dados;
     }
 
-    public function getPessoa($id)
+    public function getPlanner($id)
     {
         $pdo = Banco::conectar();
         $pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
-        $sql = "SELECT * FROM pessoa where id = ?";
+        $sql = "SELECT * FROM tb_planner where id = ?";
         $q = $pdo->prepare($sql);
         $q->execute(array($id));
         $data = $q->fetch(\PDO::FETCH_ASSOC);
         Banco::desconectar();
         return $data;
     }
-    public function setPessoa($nome, $endereco, $telefone, $email, $sexo)
+    public function setPlanner($nome, $endereco, $telefone, $email, $sexo)
     {
         $pdo = Banco::conectar();
         $pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
-        $sql = "INSERT INTO pessoa (nome, endereco, telefone, email, sexo) VALUES(?,?,?,?,?)";
+        $sql = "INSERT INTO tb_planner (titulo, data_nota, descricao, conteudo) VALUES(?,?,?,?)";
         $q = $pdo->prepare($sql);
         $q->execute(array($nome, $endereco, $telefone, $email, $sexo));
         Banco::desconectar();
         return '';
     }
 
-    public function readPessoa($id)
+    public function readPlanner($id)
     {
         $pdo = Banco::conectar();
         $pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
-        $sql = "SELECT * FROM pessoa where id = ?";
+        $sql = "SELECT * FROM tb_planner where id = ?";
         $q = $pdo->prepare($sql);
         $q->execute(array($id));
         $data = $q->fetch(\PDO::FETCH_ASSOC);
@@ -50,22 +50,22 @@ class UsuarioModel
         return $data;
     }
 
-    public function updatePessoa($id, $nome, $endereco, $telefone, $email, $sexo)
+    public function updatePlanner($id, $nome, $endereco, $telefone, $email, $sexo)
     {
         $pdo = Banco::conectar();
         $pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
-        $sql = "UPDATE pessoa  set nome = ?, endereco = ?, telefone = ?, email = ?, sexo = ? WHERE id = ?";
+        $sql = "UPDATE tb_planner  set titulo = ?, data_nota = ?, descricao = ?, conteudo = ? WHERE id = ?";
         $q = $pdo->prepare($sql);
         $q->execute(array($nome, $endereco, $telefone, $email, $sexo, $id));
         Banco::desconectar();
         return '';
     }
 
-    public function deletePessoa($id)
+    public function deletePlanner($id)
     {
         $pdo = Banco::conectar();
         $pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
-        $sql = "DELETE FROM pessoa where id = ?";
+        $sql = "DELETE FROM tb_planner where id = ?";
         $q = $pdo->prepare($sql);
         $q->execute(array($id));
         Banco::desconectar();
