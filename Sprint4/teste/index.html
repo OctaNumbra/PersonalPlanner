@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="form">
+        <ul class="tab-group">
+            <li class="tab active">
+                <a href="#signup">Sign Up</a>
+            </li>
+            <li class="tab">
+                <a href="#login">Log In</a>
+            </li>
+        </ul>
+        <div class="tab-content">
+            <div id="signup">
+                <h1>Sign Up for free</h1>
+                <form action="/" method="post">
+                    <div class="top-row">
+                        <div class="field-wrap">
+                            <label >Primeiro Nome <span class="req">*</span></label>
+                            <input type="text" required autocomplete="off" placeholder="Nome">
+                        </div>
+                        <div class="field-wrap">
+                            <label>Sobrenome <span class="req">*</span></label>
+                            <input type="text" required autocomplete="off" placeholder="Sobrenome">
+                        </div>
+                        <div class="field-wrap">
+                            <label>Email<span class="req">*</span></label>
+                            <input type="text" required autocomplete="off" placeholder="Email">
+                        </div>
+                        <div class="field-wrap">
+                            <label>Senha <span class="req">*</span></label>
+                            <input type="password" required autocomplete="off" placeholder="Senha">
+                        </div>
+                        <button type="submit" class="button button-block">Get Started</button>
+                    </div>
+                </form>
+            </div>
+            <div class="login">
+                <h1>Welcome Back!</h1>
+                <form method="post" action="/">
+                    <div class="field-wrap">
+                        <label>Email <span class="req">*</span></label>
+                        <input type="email" required autocomplete="off" placeholder="Email">
+                    </div>
+                    <div class="field-wrap">
+                        <label>Senha <span class="req">*</span></label>
+                        <input type="password" required autocomplete="off" placeholder="Senha">
+                    </div>
+                    <p class="forgot">
+                        <a href="#">Esqueceu a Senha?</a>
+                    </p>
+                    <button class="button button-block">
+                        Log In
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLmGbvfBSSHrUJ+3A7xGP5Ebd07/g=" crossorigin="anonymous">  
+</script>
+<script src="scripts.js"></script>
+
+</html>
