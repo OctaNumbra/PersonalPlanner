@@ -105,8 +105,6 @@ class IndexController
 
     public function update()
     {
-
-         echo 'update()';
        
         $id = null;
         if (!empty($_GET['id'])) {

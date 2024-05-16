@@ -1,0 +1,22 @@
+.delete-button {
+    background-color: #ff4d4d; /* Vermelho */
+    color: #fff; /* Cor do texto branco */
+    border: 2px solid #ff4d4d; /* Borda sólida vermelha */
+    padding: 10px 20px; /* Espaçamento interno */
+    border-radius: 6px; /* Borda arredondada */
+    cursor: pointer; /* Cursor de ponteiro */
+    font-size: 16px; /* Tamanho da fonte */
+    font-weight: bold; /* Negrito */
+    text-transform: uppercase; /* Transforma texto em maiúsculas */
+    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease; /* Transições suaves */
+  }
+  
+  .delete-button:hover {
+    background-color: #e60000; /* Vermelho mais escuro */
+    border-color: #e60000; /* Borda mais escura */
+  }
+  
+  .delete-button:focus {
+    outline: none; /* Remove a borda ao focar */
+  }
+  

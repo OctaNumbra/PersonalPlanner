@@ -1,0 +1,13 @@
+.container {
+  border-radius: 5px;
+}
+body {
+  background-color: #efe9d0;
+}
+.add {
+  margin: 0 0 0 5px;
+}
+img {
+  height: 150px;
+  margin: 10px 0 0 43.5%;
+}
